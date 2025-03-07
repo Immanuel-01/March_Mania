@@ -52,19 +52,22 @@ XGBoost, a tree-based ensemble model, was selected for its ability to handle str
 ### **5.1 Feature Importance**
 To determine which features had the most impact on predictions, we analyzed the feature importance scores from the XGBoost model.
 
+![image](https://github.com/user-attachments/assets/5028cc31-21dd-4656-a731-156e93d0d6ba)
 
 
 ### **5.2 Confusion Matrix**
 The confusion matrix below visualizes the accuracy of our predictions, showing the number of correct and incorrect classifications.
 
+![image](https://github.com/user-attachments/assets/1d08eb41-ace7-44ad-b73c-782d34b8ef3f)
 
 
 ### **5.3 Win Probability Analysis**
 The scatter plot below illustrates how seed differences correlate with win probabilities, indicating that higher-seeded teams generally have a higher chance of winning.
 
+![image](https://github.com/user-attachments/assets/597e0ee4-11b9-41e0-a587-837358f24b41)
 
 
-We evaluated model performance using:
+
 We evaluated model performance using:
 - **Confusion Matrix**: Showed that XGBoost correctly classified a majority of game outcomes.
 - **Feature Importance**: Seed difference and rank difference were the strongest predictors.
