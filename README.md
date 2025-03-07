@@ -34,17 +34,49 @@ We started with a simple **Logistic Regression** model as a baseline, achieving:
 - **Log Loss**: 0.29
 
 ### **4.2 Final Model – XGBoost**
+XGBoost, a tree-based ensemble model, was selected for its ability to handle structured data effectively. After hyperparameter tuning, it achieved different results for the men's and women's tournaments:
+
+- **Men's Tournament:**
+  - **Accuracy**: ~97.98%
+  - **Log Loss**: 0.1564
+
+- **Women's Tournament:**
+  - **Accuracy**: ~96.05%
+  - **Log Loss**: 0.1029
 XGBoost, a tree-based ensemble model, was selected for its ability to handle structured data effectively. After hyperparameter tuning, it achieved:
 - **Accuracy**: ~97.98%
 - **Log Loss**: 0.1564
 
 ## 5. Model Evaluation
+
+### **5.1 Feature Importance**
+To determine which features had the most impact on predictions, we analyzed the feature importance scores from the XGBoost model.
+
+
+
+### **5.2 Confusion Matrix**
+The confusion matrix below visualizes the accuracy of our predictions, showing the number of correct and incorrect classifications.
+
+
+
+### **5.3 Win Probability Analysis**
+The scatter plot below illustrates how seed differences correlate with win probabilities, indicating that higher-seeded teams generally have a higher chance of winning.
+
+
+
+We evaluated model performance using:
 We evaluated model performance using:
 - **Confusion Matrix**: Showed that XGBoost correctly classified a majority of game outcomes.
 - **Feature Importance**: Seed difference and rank difference were the strongest predictors.
 - **Win Probability Analysis**: Higher-seeded teams consistently had higher predicted probabilities of winning.
 
 ## 6. Predictions for March Madness 2024
+
+To visualize the distribution of predicted win probabilities, we generated the following histogram:
+
+
+
+Using the trained XGBoost model, we generated predictions for the upcoming 2024 tournament. The model evaluated **2,278 possible matchups**, ranking teams based on their likelihood of winning.
 Using the trained XGBoost model, we generated predictions for the upcoming 2024 tournament. The model evaluated **2,278 possible matchups**, ranking teams based on their likelihood of winning.
 
 **Example Predictions:**
@@ -63,4 +95,8 @@ This project successfully developed a machine learning pipeline to predict NCAA 
 3. **Better Time-Series Modeling** – Utilize recurrent neural networks (RNNs) for sequence modeling.
 
 Our final predictions for the 2024 tournament are stored in **MarchMadnessPredictions.csv**, providing a probabilistic ranking of potential matchups.
+
+---
+
+This project demonstrates the power of machine learning in sports analytics and provides a foundation for future enhancements in predictive modeling.
 
