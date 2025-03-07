@@ -1,4 +1,4 @@
-# Predicting March Madness 2024 Outcomes Using Machine Learning
+# Predicting March Madness 2025 Outcomes Using Machine Learning
 
 ## 1. Introduction
 March Madness is one of the most exciting and unpredictable events in sports, where NCAA basketball teams compete in a knockout-style tournament. The goal of this project is to build a machine learning model to predict the outcomes of March Madness games for both the men's and women's tournaments.
