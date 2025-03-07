@@ -60,6 +60,9 @@ The confusion matrix below visualizes the accuracy of our predictions, showing t
 
 ![image](https://github.com/user-attachments/assets/1d08eb41-ace7-44ad-b73c-782d34b8ef3f)
 
+![image](https://github.com/user-attachments/assets/c8f471d1-e665-4d73-9943-f1a09eaf4f1b)
+
+
 
 ### **5.3 Win Probability Analysis**
 The scatter plot below illustrates how seed differences correlate with win probabilities, indicating that higher-seeded teams generally have a higher chance of winning.
