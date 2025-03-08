@@ -78,8 +78,8 @@ Analyzing **XGBoost feature importance**, we found the most impactful factors:
 ### 5.2 Confusion Matrix
 The confusion matrix illustrates correct vs. incorrect classifications:
 ```
-[[315 172]
- [168 353]]
+![image](https://github.com/user-attachments/assets/5088bd1f-547a-4101-8326-40f5b8e71e76)
+
 ```
 
 ### 5.3 Win Probability Analysis
