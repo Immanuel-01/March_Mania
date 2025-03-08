@@ -75,20 +75,22 @@ Analyzing **XGBoost feature importance**, we found the most impactful factors:
 - **Defensive Ratings**
 - **Offensive Ratings**
 
-![Feature Importance - Optimized XGBoost](file-3YHDM8wNAW8XUwcEfV8z1P)
-![Feature Importance - XGBoost](file-7Yq9pb5UmUZ5pXSQAMG5Ui)
+![image](https://github.com/user-attachments/assets/1190a0d7-fae8-4f82-a93a-874d0c7e248d)
+
+![image](https://github.com/user-attachments/assets/44f69564-da4a-4c17-9941-8f1498fd2881)
+
 
 ### 5.2 Confusion Matrix
 The confusion matrix illustrates correct vs. incorrect classifications:
-```
-[[315 172]
- [168 353]]
-```
+
+![image](https://github.com/user-attachments/assets/da8c5419-314f-47f0-9095-e74337365964)
+
 
 ### 5.3 Win Probability Analysis
 We generated a **win probability distribution** based on seed differences and historical data.
 
-![ROC Curve](file-KSmixPv4vGpGgiLTwpYgks)
+![image](https://github.com/user-attachments/assets/1837f9fd-316e-4d10-9ab6-c05d3216f904)
+
 
 ---
 
@@ -119,5 +121,6 @@ Our **March Madness 2025 predictor** successfully utilizes machine learning to e
 
 This project demonstrates the power of **machine learning in sports analytics** and provides a **scalable framework** for March Madness predictions.
 
-![Tournament Team Seed Distribution](file-DgaHBdXZa7nRZKMnEXg5fe)
+![image](https://github.com/user-attachments/assets/6610db9a-641a-49d9-8a68-dbd58b20f686)
+
 
