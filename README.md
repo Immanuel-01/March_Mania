@@ -1,7 +1,7 @@
 # Predicting March Madness 2025 Outcomes Using Machine Learning
 
 ## 1. Introduction
-This project aims to predict the outcomes of **March Madness 2025** NCAA basketball games for the men's tournament. Using **historical data** and **machine learning models**, we estimate the probability of a team winning a given matchup.
+This project aims to predict the outcomes of **March Madness 2025** NCAA basketball games for the men's tournament. Using **historical data** and **machine learning models**, we estimate the probability of a team winning a given matchup. 
 
 Our pipeline leverages **Logistic Regression** and **XGBoost** to generate predictions based on features such as:
 - **Seed Difference**
@@ -75,15 +75,20 @@ Analyzing **XGBoost feature importance**, we found the most impactful factors:
 - **Defensive Ratings**
 - **Offensive Ratings**
 
+![Feature Importance - Optimized XGBoost](file-3YHDM8wNAW8XUwcEfV8z1P)
+![Feature Importance - XGBoost](file-7Yq9pb5UmUZ5pXSQAMG5Ui)
+
 ### 5.2 Confusion Matrix
 The confusion matrix illustrates correct vs. incorrect classifications:
-
-![image](https://github.com/user-attachments/assets/5088bd1f-547a-4101-8326-40f5b8e71e76)
-
-
+```
+[[315 172]
+ [168 353]]
+```
 
 ### 5.3 Win Probability Analysis
 We generated a **win probability distribution** based on seed differences and historical data.
+
+![ROC Curve](file-KSmixPv4vGpGgiLTwpYgks)
 
 ---
 
@@ -100,10 +105,11 @@ Using our trained **XGBoost model**, we evaluated **134,510 possible matchups** 
 
 The final predictions are stored in **`predicted_matchups_with_probabilities.csv`**.
 
+---
 
 ## 7. Conclusion & Future Improvements
 
-Our **March Madness 2025 predictor** successfully utilizes machine learning to estimate tournament outcomes.
+Our **March Madness 2025 predictor** successfully utilizes machine learning to estimate tournament outcomes. 
 
 ### Future Improvements:
 - **Incorporate Player-Level Data** – Individual player stats could improve accuracy.
@@ -112,4 +118,6 @@ Our **March Madness 2025 predictor** successfully utilizes machine learning to e
 - **Better Time-Series Modeling** – Utilize **LSTMs/RNNs** to capture momentum trends.
 
 This project demonstrates the power of **machine learning in sports analytics** and provides a **scalable framework** for March Madness predictions.
+
+![Tournament Team Seed Distribution](file-DgaHBdXZa7nRZKMnEXg5fe)
 
