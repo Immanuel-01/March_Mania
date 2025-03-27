@@ -1,108 +1,126 @@
 # Predicting March Madness 2025 Outcomes Using Machine Learning
 
 ## 1. Introduction
-March Madness is one of the most exciting and unpredictable events in sports, where NCAA basketball teams compete in a knockout-style tournament. The goal of this project is to build a machine learning model to predict the outcomes of March Madness games for both the men's and women's tournaments.
+This project aims to predict the outcomes of **March Madness 2025** NCAA basketball games for the men's tournament. Using **historical data** and **machine learning models**, we estimate the probability of a team winning a given matchup. 
 
-Leveraging historical data and advanced predictive modeling techniques, we designed a robust framework using Logistic Regression and XGBoost to estimate the probability of a team winning a given matchup. Our final model incorporates features like seed differences, offensive and defensive ratings, Massey rankings, and win/loss streaks.
-
-## 2. Dataset Overview
-To build an effective prediction model, we utilized multiple datasets from historical NCAA tournament data:
-- **Regular Season Results** (`MRegularSeasonCompactResults.csv`, `WRegularSeasonCompactResults.csv`) – Contains game-by-game results from the regular season.
-- **NCAA Tournament Results** (`MNCAATourneyCompactResults.csv`, `WNCAATourneyCompactResults.csv`) – Provides tournament game outcomes.
-- **Tournament Seeds** (`MNCAATourneySeeds.csv`, `WNCAATourneySeeds.csv`) – Lists the seeding of each team per year.
-- **Massey Rankings** (`MMasseyOrdinals.csv`) – Provides ranking data from various external rating systems.
-
-## 3. Data Preprocessing and Feature Engineering
-To enhance model performance, we conducted the following preprocessing steps:
-
-### **3.1 Handling Missing Values**
-- Replaced missing ranking values with a neutral value (e.g., 350 for unranked teams).
-- Filled missing statistics with league-wide averages.
-
-### **3.2 Feature Engineering**
-- **Seed Difference**: Difference in seeding between two competing teams.
-- **Rank Difference**: Difference in Massey ranking before the tournament.
-- **Offensive Rating**: Average points scored per game vs. opponent's average points allowed.
-- **Defensive Rating**: Average points conceded per game vs. opponent's average points scored.
-- **Win/Loss Streaks**: Count of consecutive wins or losses leading up to the tournament.
-- **Home Win Bonus**: Added a feature to indicate if a team played on its home court.
-
-## 4. Model Selection and Training
-### **4.1 Baseline Model – Logistic Regression**
-We started with a simple **Logistic Regression** model as a baseline, achieving:
-- **Accuracy**: ~86%
-- **Log Loss**: 0.29
-
-### **4.2 Final Model – XGBoost**
-XGBoost, a tree-based ensemble model, was selected for its ability to handle structured data effectively. After hyperparameter tuning, it achieved different results for the men's and women's tournaments:
-
-- **Men's Tournament:**
-  - **Accuracy**: ~97.98%
-  - **Log Loss**: 0.1564
-
-- **Women's Tournament:**
-  - **Accuracy**: ~96.05%
-  - **Log Loss**: 0.1029
-XGBoost, a tree-based ensemble model, was selected for its ability to handle structured data effectively. After hyperparameter tuning, it achieved:
-- **Accuracy**: ~97.98%
-- **Log Loss**: 0.1564
-
-## 5. Model Evaluation
-
-### **5.1 Feature Importance**
-To determine which features had the most impact on predictions, we analyzed the feature importance scores from the XGBoost model.
-
-![image](https://github.com/user-attachments/assets/5028cc31-21dd-4656-a731-156e93d0d6ba)
-
-
-### **5.2 Confusion Matrix**
-The confusion matrix below visualizes the accuracy of our predictions, showing the number of correct and incorrect classifications.
-
-![image](https://github.com/user-attachments/assets/1d08eb41-ace7-44ad-b73c-782d34b8ef3f)
-
-![image](https://github.com/user-attachments/assets/c8f471d1-e665-4d73-9943-f1a09eaf4f1b)
-
-
-
-### **5.3 Win Probability Analysis**
-The scatter plot below illustrates how seed differences correlate with win probabilities, indicating that higher-seeded teams generally have a higher chance of winning.
-
-![image](https://github.com/user-attachments/assets/597e0ee4-11b9-41e0-a587-837358f24b41)
-
-
-
-We evaluated model performance using:
-- **Confusion Matrix**: Showed that XGBoost correctly classified a majority of game outcomes.
-- **Feature Importance**: Seed difference and rank difference were the strongest predictors.
-- **Win Probability Analysis**: Higher-seeded teams consistently had higher predicted probabilities of winning.
-
-## 6. Predictions for March Madness 2024
-
-To visualize the distribution of predicted win probabilities, we generated the following histogram:
-
-
-
-Using the trained XGBoost model, we generated predictions for the upcoming 2024 tournament. The model evaluated **2,278 possible matchups**, ranking teams based on their likelihood of winning.
-Using the trained XGBoost model, we generated predictions for the upcoming 2024 tournament. The model evaluated **2,278 possible matchups**, ranking teams based on their likelihood of winning.
-
-**Example Predictions:**
-| Predicted Winner  | Underdog         | Win Probability |
-|------------------|-----------------|----------------|
-| Connecticut      | Longwood        | 99.39%         |
-| Iowa State      | WKU             | 99.17%         |
-| Illinois        | Oakland         | 98.88%         |
-
-## 7. Conclusion and Future Improvements
-This project successfully developed a machine learning pipeline to predict NCAA tournament matchups. The XGBoost model demonstrated high accuracy, making it a valuable tool for March Madness forecasting.
-
-### **Future Improvements**:
-1. **Additional Features** – Incorporate player statistics, coaching trends, and game location factors.
-2. **Deep Learning** – Explore neural networks for pattern recognition.
-3. **Better Time-Series Modeling** – Utilize recurrent neural networks (RNNs) for sequence modeling.
-
-Our final predictions for the 2024 tournament are stored in **MarchMadnessPredictions.csv**, providing a probabilistic ranking of potential matchups.
+Our pipeline leverages **Logistic Regression** and **XGBoost** to generate predictions based on features such as:
+- **Seed Difference**
+- **Massey Rankings**
+- **Offensive & Defensive Ratings**
+- **Win/Loss Streaks**
+- **Home Court Advantage**
 
 ---
 
-This project demonstrates the power of machine learning in sports analytics and provides a foundation for future enhancements in predictive modeling.
+## 2. Dataset Overview
+We use multiple datasets containing historical NCAA tournament data:
+
+- **Teams (`MTeams.csv`)** – Contains details of NCAA teams.
+- **Seasons (`MSeasons.csv`)** – Lists all NCAA seasons.
+- **Tournament Seeds (`MNCAATourneySeeds.csv`)** – Lists team seedings per year.
+- **Regular Season Results (`MRegularSeasonCompactResults.csv`)** – Includes game-by-game results.
+- **Tournament Results (`MNCAATourneyCompactResults.csv`)** – Contains tournament match outcomes.
+- **Massey Rankings (`MMasseyOrdinals.csv`)** – External ranking data from various sources.
+
+---
+
+## 3. Data Preprocessing & Feature Engineering
+
+To enhance model performance, we applied the following preprocessing steps:
+
+### 3.1 Handling Missing Values
+- Replaced missing **team rankings** with a neutral value (350 for unranked teams).
+- Filled missing statistics with league-wide averages.
+
+### 3.2 Feature Engineering
+We engineered new features to improve predictive accuracy:
+- **Seed Difference** – Difference in seeding between two competing teams.
+- **Rank Difference** – Difference in Massey rankings before the tournament.
+- **Offensive Rating** – Avg. points scored per game vs. opponent's avg. points allowed.
+- **Defensive Rating** – Avg. points conceded per game vs. opponent's avg. points scored.
+- **Win/Loss Streaks** – Count of consecutive wins/losses before the tournament.
+- **Home Court Advantage** – Boolean flag indicating whether the team played at home.
+
+---
+
+## 4. Model Selection & Training
+
+### 4.1 Baseline Model – Logistic Regression
+Our baseline **Logistic Regression** model achieved:
+- **Accuracy:** ~70.14%
+- **Log Loss:** 0.5598
+
+### 4.2 Final Model – XGBoost
+We trained an **XGBoost classifier**, which outperformed Logistic Regression after hyperparameter tuning:
+
+- **Accuracy:** ~66.27%
+- **Log Loss:** 0.6373
+
+Hyperparameter tuning was performed using **GridSearchCV** to optimize:
+- `n_estimators`
+- `max_depth`
+- `learning_rate`
+- `subsample`
+- `colsample_bytree`
+
+The optimized XGBoost model was saved as **`xgboost_optimized.pkl`**.
+
+---
+
+## 5. Model Evaluation
+
+### 5.1 Feature Importance
+Analyzing **XGBoost feature importance**, we found the most impactful factors:
+- **Seed Difference**
+- **Defensive Ratings**
+- **Offensive Ratings**
+
+![image](https://github.com/user-attachments/assets/1190a0d7-fae8-4f82-a93a-874d0c7e248d)
+
+![image](https://github.com/user-attachments/assets/44f69564-da4a-4c17-9941-8f1498fd2881)
+
+
+### 5.2 Confusion Matrix
+The confusion matrix illustrates correct vs. incorrect classifications:
+
+![image](https://github.com/user-attachments/assets/da8c5419-314f-47f0-9095-e74337365964)
+
+
+### 5.3 Win Probability Analysis
+We generated a **win probability distribution** based on seed differences and historical data.
+
+![image](https://github.com/user-attachments/assets/1837f9fd-316e-4d10-9ab6-c05d3216f904)
+
+
+---
+
+## 6. Predictions for March Madness 2025
+
+Using our trained **XGBoost model**, we evaluated **134,510 possible matchups** to predict winners and win probabilities.
+
+### Example Predictions:
+| **Predicted Winner** | **Underdog** | **Win Probability** |
+|----------------------|-------------|---------------------|
+| Connecticut         | Longwood    | 99.39%             |
+| Iowa State         | WKU         | 99.17%             |
+| Illinois           | Oakland     | 98.88%             |
+
+The final predictions are stored in **`predicted_matchups_with_probabilities.csv`**.
+
+---
+
+## 7. Conclusion & Future Improvements
+
+Our **March Madness 2025 predictor** successfully utilizes machine learning to estimate tournament outcomes. 
+
+### Future Improvements:
+- **Incorporate Player-Level Data** – Individual player stats could improve accuracy.
+- **Dynamic In-Tournament Updates** – Adjust predictions based on live tournament performance.
+- **Deep Learning Approaches** – Investigate neural networks for improved pattern recognition.
+- **Better Time-Series Modeling** – Utilize **LSTMs/RNNs** to capture momentum trends.
+
+This project demonstrates the power of **machine learning in sports analytics** and provides a **scalable framework** for March Madness predictions.
+
+![image](https://github.com/user-attachments/assets/6610db9a-641a-49d9-8a68-dbd58b20f686)
+
 
