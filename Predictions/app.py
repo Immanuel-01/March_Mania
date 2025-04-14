@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 xgb_model = joblib.load("xgb_best.pkl")  # Ensure correct file path
 
 # Load team data for dropdown selection
-teams = pd.read_csv("../data/MTeams.csv")
+teams = pd.read_csv("MTeams.csv")
 team_id_to_name = dict(zip(teams["TeamID"], teams["TeamName"]))
 team_name_to_id = {v: k for k, v in team_id_to_name.items()}
 

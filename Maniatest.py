@@ -2,6 +2,7 @@
 import pandas as pd
 import os
 
+
 # Define the base data directory
 BASE_DIR = "data"
 
@@ -343,7 +344,9 @@ for feature, importance in sorted_features:
     print(f"{feature}: {importance:.4f}")
 
 #%%
-!pip install xgboost
+import os
+os.system("pip install xgboost")
+
 
 #%%
 from xgboost import XGBClassifier
@@ -575,87 +578,3 @@ import pandas as pd
 df = pd.read_csv("predicted_matchups_with_probabilities.csv")
 print(df.head())
 
-#%%
-from sklearn.metrics import confusion_matrix
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-# Generate confusion matrix
-conf_matrix = confusion_matrix(y_test, y_pred)
-
-# Plot confusion matrix
-plt.figure(figsize=(5, 4))
-sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=["Loss", "Win"], yticklabels=["Loss", "Win"])
-plt.xlabel("Predicted")
-plt.ylabel("Actual")
-plt.title("Confusion Matrix")
-plt.show()
-
-#%%
-from sklearn.metrics import roc_curve, auc
-
-# Get False Positive Rate, True Positive Rate
-fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
-roc_auc = auc(fpr, tpr)
-
-# Plot ROC Curve
-plt.figure(figsize=(6, 5))
-plt.plot(fpr, tpr, label=f"ROC Curve (AUC = {roc_auc:.2f})", color="blue")
-plt.plot([0, 1], [0, 1], linestyle="--", color="gray")  # Random guess line
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-plt.title("ROC Curve")
-plt.legend()
-plt.show()
-
-#%%
-import matplotlib.pyplot as plt
-
-# Get feature importance
-importances = xgb_best.feature_importances_
-
-# Plot feature importance
-plt.figure(figsize=(10, 6))
-plt.barh(features, importances, color="blue")
-plt.xlabel("Importance Score")
-plt.ylabel("Feature")
-plt.title("Feature Importance in Optimized XGBoost Model")
-plt.show()
-
-#%%
-from xgboost import plot_importance
-import matplotlib.pyplot as plt
-
-plot_importance(xgb_model)
-plt.title("Feature Importance (XGBoost)")
-plt.show()
-
-#%%
-import seaborn as sns
-
-plt.figure(figsize=(10, 6))
-sns.scatterplot(x=new_matchups["SeedDiff"], y=new_matchups["WinProbability"])
-plt.xlabel("Seed Difference (Higher seed - Lower seed)")
-plt.ylabel("Win Probability")
-plt.title("Seed Difference vs. Win Probability")
-plt.show()
-
-#%%
-import seaborn as sns
-from sklearn.metrics import confusion_matrix
-
-cm = confusion_matrix(y_test, y_pred_xgb)
-plt.figure(figsize=(6, 5))
-sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", xticklabels=["Loss", "Win"], yticklabels=["Loss", "Win"])
-plt.xlabel("Predicted Label")
-plt.ylabel("True Label")
-plt.title("Confusion Matrix (XGBoost)")
-plt.show()
-
-#%%
-plt.figure(figsize=(12, 6))
-sns.histplot(tourney_seeds["Seed"].astype(str).apply(lambda x: int(re.sub(r"[A-Za-z]", "", x))), bins=16)
-plt.xlabel("Seed")
-plt.ylabel("Number of Teams")
-plt.title("Distribution of Tournament Team Seeds")
-plt.show()
